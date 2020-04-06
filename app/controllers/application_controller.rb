@@ -1,6 +1,8 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
+  enable :sessions
+
 
   configure do
     set :public_folder, 'public'
@@ -10,25 +12,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    if Helpers.logged_in?(session)
+      redirect to '/users/'
+    end
     erb :"users/index"
   end
-
-  get "/signup" do
-    erb :'/user/new'
-  end
-
-
-  helpers do
-		def logged_in?
-			!!session[:user_id]
-		end
-
-		def current_user
-			User.find(session[:user_id])
-		end
-	end
-
-
 
 
 end

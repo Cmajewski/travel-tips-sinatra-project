@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20200406011212) do
 
   create_table "tips", force: :cascade do |t|
     t.string  "name"
-    t.string  "type"
+    t.string  "type_of_place"
     t.text    "description"
     t.integer "user_id"
     t.integer "destination_id"

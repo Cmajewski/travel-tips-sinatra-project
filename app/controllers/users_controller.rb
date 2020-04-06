@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
+  enable :sessions
 
   # GET: /users
   get "/users" do
-    erb :"/users/show"
-   
+    @user=session
+    binding.pry
+
+    erb :"/users/show"  
   end
 
   # GET: /users/new
@@ -13,13 +16,12 @@ class UsersController < ApplicationController
 
   # POST: /users
   post "/users/new" do
-    @user=User.new(username: params[:username],password: params[:password])
-    if @user.valid?
+    @user=User.new(name: params[:name], username: params[:username],password: params[:password])
+    if @user
       @user.save
-      session["user_id"]=@user.id
       redirect to "/users"
     else
-      flash[:message]="Invalid Login, Please Sign Up Again"
+      #flash[:message]="Invalid Login, Please Sign Up Again"
       redirect to "/users/new"
     end
     end
@@ -28,10 +30,9 @@ class UsersController < ApplicationController
     post "/users" do
       @user = User.find_by(:username => params[:username])
       if @user && @user.authenticate(params[:password])
-        session[:user_id] = @user.id
         redirect "/users"
       else
-        flash[:message]="Invalid Login, Please Sign Up Again"
+        #flash[:message]="Invalid Login, Please Sign Up Again"
         redirect to "/users/new"
       end
 
