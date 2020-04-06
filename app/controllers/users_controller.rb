@@ -1,32 +1,37 @@
 class UsersController < ApplicationController
-  enable :sessions
 
-  # GET: /users
-  get "/users" do
-    @user=session
-    binding.pry
 
-    erb :"/users/show"  
-  end
-
-  # GET: /users/new
+  # User Signup form- GET: /users/new  
   get "/users/new" do
     erb :"/users/new"
   end
+ 
 
-  # POST: /users
+  #Redirected once a user signs up- POST: /users
   post "/users/new" do
     @user=User.new(name: params[:name], username: params[:username],password: params[:password])
     if @user
       @user.save
-      redirect to "/users"
+      session[:user_id] = @user.id
+      binding.pry
+      redirect to "/sessions"
     else
       #flash[:message]="Invalid Login, Please Sign Up Again"
-      redirect to "/users/new"
+      "hello world"
     end
     end
 
+    get "/sessions" do
+      binding.pry
+    end
 
+     #User Homepage showing any travel tips-  GET: /users
+    get "/users" do
+      binding.pry
+      erb :"/users/show"  
+    end
+
+    #Redirected once a user logs in
     post "/users" do
       @user = User.find_by(:username => params[:username])
       if @user && @user.authenticate(params[:password])
