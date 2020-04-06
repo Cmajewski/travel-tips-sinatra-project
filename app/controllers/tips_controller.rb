@@ -2,12 +2,12 @@ class TipsController < ApplicationController
 
   # GET: /tips
   get "/tips" do
-    erb :"/tips/index.html"
+    erb :"/tips/index"
   end
 
   # GET: /tips/new
   get "/tips/new" do
-    erb :"/tips/new.html"
+    erb :"/tips/new"
   end
 
   # POST: /tips
