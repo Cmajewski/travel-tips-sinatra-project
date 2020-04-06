@@ -20,16 +20,9 @@ class UsersController < ApplicationController
       end
     end
 
-
-     #User Homepage showing any travel tips-  GET: /users
-    get "/users" do
-      binding.pry
-      erb :"/users/show"  
-    end
-
-    #Redirected once a user logs in
-    post "/users" do
-      @user = User.find_by(:username => params[:username])
+  #Redirected once a user logs in
+  post "/users" do
+    @user = User.find_by(:username => params[:username])
       if @user && @user.authenticate(params[:password])
         session[:user_id]=@user.id
         redirect "/users"
@@ -37,9 +30,17 @@ class UsersController < ApplicationController
         #flash[:message]="Invalid Login, Please Sign Up Again"
         redirect to "/users/new"
       end
+  end
 
-    end
-
+  #User Homepage showing any travel tips-  GET: /users
+  get "/users" do
+     if Helpers.logged_in?(session)
+      @users=Helpers.current_user(session)
+      erb :"/users/show"
+     else
+      redirect to "/users/new"
+     end
+  end
 
   # GET: /users/5
   get "/users/:id" do
@@ -64,9 +65,9 @@ class UsersController < ApplicationController
   get "/logout" do 
     if Helpers.logged_in?(session)
     session.clear
-    redirect "/"
+    redirect to "/"
     else 
-      redirect "/"
+      redirect to "/"
     end
   end
 
