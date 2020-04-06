@@ -10,20 +10,16 @@ class UsersController < ApplicationController
   #Redirected once a user signs up- POST: /users
   post "/users/new" do
     @user=User.new(name: params[:name], username: params[:username],password: params[:password])
-    if @user
-      @user.save
-      session[:user_id] = @user.id
-      binding.pry
-      redirect to "/sessions"
-    else
-      #flash[:message]="Invalid Login, Please Sign Up Again"
-      "hello world"
-    end
+     if @user.valid?
+        @user.save
+        session[:user_id] = @user.id
+        redirect to "/users"
+      else
+        #flash[:message]="Invalid Login, Please Sign Up Again"
+        redirect to "/users/new"
+      end
     end
 
-    get "/sessions" do
-      binding.pry
-    end
 
      #User Homepage showing any travel tips-  GET: /users
     get "/users" do
@@ -35,6 +31,7 @@ class UsersController < ApplicationController
     post "/users" do
       @user = User.find_by(:username => params[:username])
       if @user && @user.authenticate(params[:password])
+        session[:user_id]=@user.id
         redirect "/users"
       else
         #flash[:message]="Invalid Login, Please Sign Up Again"
