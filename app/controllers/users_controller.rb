@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   # GET: /users
   get "/users" do
     erb :"/users/show"
+   
   end
 
   # GET: /users/new
@@ -23,7 +24,17 @@ class UsersController < ApplicationController
     end
     end
 
+
     post "/users" do
+      @user = User.find_by(:username => params[:username])
+      if @user && @user.authenticate(params[:password])
+        session[:user_id] = @user.id
+        redirect "/users"
+      else
+        flash[:message]="Invalid Login, Please Sign Up Again"
+        redirect to "/users/new"
+      end
+
     end
 
 
@@ -46,4 +57,5 @@ class UsersController < ApplicationController
   delete "/users/:id/delete" do
     redirect "/users"
   end
+  
 end
