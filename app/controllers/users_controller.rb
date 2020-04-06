@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
      #User Homepage showing any travel tips-  GET: /users
     get "/users" do
-      binding.pry
+
       erb :"/users/show"  
     end
 
@@ -60,5 +60,14 @@ class UsersController < ApplicationController
   delete "/users/:id/delete" do
     redirect "/users"
   end
-  
+
+  get "/logout" do 
+    if Helpers.logged_in?(session)
+    session.clear
+    redirect "/"
+    else 
+      redirect "/"
+    end
+  end
+
 end
