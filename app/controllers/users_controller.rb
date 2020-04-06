@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
      #User Homepage showing any travel tips-  GET: /users
     get "/users" do
-
+      binding.pry
       erb :"/users/show"  
     end
 
