@@ -7,5 +7,6 @@ end
 use Rack::MethodOverride
 #other controllers will go here too
 run ApplicationController
+use TipsController
 use DestinationsController
 use UsersController

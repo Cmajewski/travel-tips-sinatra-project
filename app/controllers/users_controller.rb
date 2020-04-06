@@ -2,18 +2,30 @@ class UsersController < ApplicationController
 
   # GET: /users
   get "/users" do
-    erb :"/users/index.html"
+    erb :"/users/show"
   end
 
   # GET: /users/new
   get "/users/new" do
-    erb :"/users/new.html"
+    erb :"/users/new"
   end
 
   # POST: /users
-  post "/users" do
-    redirect "/users"
-  end
+  post "/users/new" do
+    @user=User.new(username: params[:username],password: params[:password])
+    if @user.valid?
+      @user.save
+      session["user_id"]=@user.id
+      redirect to "/users"
+    else
+      flash[:message]="Invalid Login, Please Sign Up Again"
+      redirect to "/users/new"
+    end
+    end
+
+    post "/users" do
+    end
+
 
   # GET: /users/5
   get "/users/:id" do

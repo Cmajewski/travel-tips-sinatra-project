@@ -4,28 +4,28 @@
     <h1>Trippy</h1>
 
     <div class="content">
-      <p>Share your favorite bakery, local beaches or that dive bar can't believe you stumbled into. Sharing your travel recs with your friends has never been so easy! </p>
-      <h2>Have an account?</h2>
-       <form action="user/new" method="post">
-       <ul>
-     <li><input type="text" id="username" name="username" placeholder="Username"></li>
-    <li><input type="text" id="password" name="password" placeholder="Password"></li>
-     <ul>
-     <input type="submit" value="Log in">
-    </form>
-       </div>
+      <p>Share your favorite bakery, local beaches or that dive bar you can't believe you stumbled into. Sharing travel recs with friends has never been so easy! </p>
+      <h2>Have an Account?</h2>
+        <form action="/users" method="post">
+            <ul>
+                <li><input type="text" id="username" name="username" placeholder="Username"></li>
+                <li><input type="text" id="password" name="password" placeholder="Password"></li>
+                <li><input type="submit" value="Log in"></li>
+            <ul>
+        </form>
+    </div>
    
 
     <div class="sidebar">
       <h2>Create a New Account</h2>
       <p>It's quick and easy.</p>
-      <form action="user/new" method="post">
-      <ul>
-        <li><input type="text" id="name" name="username" placeholder="Name"></li>
-        <li><input type="text" id="username" name="username" placeholder="Username"></li>
-        <li><input type="text" id="password" name="password" placeholder="Password"></li>
-        </ul>
-        <input type="submit" value="Sign Up">
+        <form action="/users/new" method="post">
+        <ul>
+            <li><input type="text" id="name" name="username" placeholder="Name"></li>
+            <li><input type="text" id="username" name="username" placeholder="Username"></li>
+            <li><input type="text" id="password" name="password" placeholder="Password"></li>
+            <li><input type="submit" value="Sign Up"></li>
+            </ul>  
         </form>
     </div>
 
