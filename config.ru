@@ -7,3 +7,5 @@ end
 use Rack::MethodOverride
 #other controllers will go here too
 run ApplicationController
+use DestinationsController
+use UsersController
