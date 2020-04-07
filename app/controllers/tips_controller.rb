@@ -63,7 +63,7 @@ class TipsController < ApplicationController
 
   # PATCH: /tips/5
   patch "/tips/:id" do
-    @edit_tip = Tip.find_by(params[:id])
+    @edit_tip = Tip.find(params[:id])
     binding.pry
     @edit_tip.update(name: params[:name], type_of_place: params[:type_of_place],description: params[:description])
     redirect "/tips/#{@edit_tip.id}"
