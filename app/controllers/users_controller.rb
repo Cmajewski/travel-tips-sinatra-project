@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       @users=Helpers.current_user(session)
       erb :"/tips/index"
      else
-      redirect to "/users"
+      redirect to "/users/new"
      end
   end
 

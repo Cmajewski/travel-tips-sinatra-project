@@ -13,7 +13,7 @@ class TipsController < ApplicationController
   # GET: /tips/new
   get "/tips/new" do
     if !Helpers.logged_in?(session)
-    erb :"/users/new"
+    erb :"/"
     else 
       redirect to "/tips/new"
     end
