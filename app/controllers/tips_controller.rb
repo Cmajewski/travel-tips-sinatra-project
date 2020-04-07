@@ -15,7 +15,7 @@ class TipsController < ApplicationController
     if !Helpers.logged_in?(session)
     erb :"/"
     else 
-      redirect to "/tips/new"
+      erb :"/tips/new"
     end
   end
 
@@ -53,16 +53,26 @@ class TipsController < ApplicationController
 
   # GET: /tips/5/edit
   get "/tips/:id/edit" do
+    if !Helpers.logged_in?(session)
+      erb :"/users/new"
+    else 
+      @tip=Tip.find(params[:id])
+      binding.pry
     erb :"/tips/edit"
+    end
   end
 
   # PATCH: /tips/5
   patch "/tips/:id" do
-    redirect "/tips/:id"
+    @tip = Tip.find_by(params[:id])
+    @tip.update(name: params[:name], type_of_place: params[:type_of_place],description: params[:description])
+    redirect "/tips/#{@tip.id}"
   end
 
   # DELETE: /tips/5/delete
   delete "/tips/:id/delete" do
+    @tip = Tip.find_by_id(params[:id])
+    @tip.destroy
     redirect "/tips"
   end
 end

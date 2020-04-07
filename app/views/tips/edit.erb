@@ -1,1 +1,15 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+
+
+<form action="/tips/<%=@tip.id%>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <h2>Your Find: <input type="text" value="<%=@tip.name%>" name="name"></h2>
+    <ul>
+    <li><b><label for="type_of_place">What is it?:</label></b>
+    <input type="text" value="<%=@tip.type_of_place%>" name="type_of_place"></li>
+    <br>
+    <li><b><label for="description">Description:</label></b>
+    <input type="text" value="<%=@tip.description%>" name="description">
+    <ul></li>
+    <br>
+    <input type="submit" id="submit" value="Update">
+</form>
