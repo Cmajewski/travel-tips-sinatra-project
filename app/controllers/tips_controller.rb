@@ -2,16 +2,20 @@ class TipsController < ApplicationController
 
   # GET: /tips
   get "/tips" do
+    if !Helpers.logged_in?(session)
+      erb :"/users/new"
+    else 
     @user=Helpers.current_user(session)
     erb :"/tips/index"
+    end
   end
 
   # GET: /tips/new
   get "/tips/new" do
-    if Helpers.logged_in?(session)
-    erb :"/tips/new"
+    if !Helpers.logged_in?(session)
+    erb :"/users/new"
     else 
-      redirect to "/"
+      redirect to "/tips/new"
     end
   end
 
@@ -30,18 +34,19 @@ class TipsController < ApplicationController
 
      # GET failure message to redirect
   get "/tips/failure" do
-    if Helpers.logged_in?(session)
-      erb :"/tips/new"
+    if !Helpers.logged_in?(session)
+      erb :"tips/failure"
       else 
-    erb :"tips/failure"
+      erb :"/users/new"
     end
   end
 
   # GET: /tips/5
   get "/tips/:id" do
-  if Helpers.logged_in?(session)
-    erb :"/tips/new"
+  if !Helpers.logged_in?(session)
+    erb :"/users/new"
   else 
+    @tip=Tip.find(params[:id])
     erb :"/tips/show"
   end
   end

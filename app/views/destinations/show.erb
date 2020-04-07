@@ -1,0 +1,11 @@
+<h1>Be in the Know, Where Should You Go?</h1>
+
+
+
+<%@destination.each do |tip| %>
+<br>
+<h2>City: <%=Helpers.find_destination(tip.destination_id).capitalize%></h2>
+<h3>Your find: <%= tip.name%></h3>
+<h3>What is it?: <%= tip.type_of_place%></h3>
+<h3>Description: <%= tip.description%></h3>
+<%end%>
