@@ -57,7 +57,6 @@ class TipsController < ApplicationController
       erb :"/users/new"
     else 
       @tip=Tip.find(params[:id])
-      
     erb :"/tips/edit"
     end
   end

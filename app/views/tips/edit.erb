@@ -1,16 +1,16 @@
 <form action="/tips/<%=@tip.id%>" method="post">
-<div>
+<h2>
     <label for="name">Your Find:</label>
-    <input type="text" name="name" id="name" value=<%= @tip.name %>>
-</div>
+    <input type="text" name="name" id="name" value="<%= @tip.name %>">
+</h2>
  <div>
     <label for="type_of_place">What is it?:</label>
-    <input type="text" name="type_of_place" id="type_of_place" value=<%= @tip.type_of_place%>>
+    <input type="text" name="type_of_place" id="type_of_place" value="<%=@tip.type_of_place%>">
   </div>
 
    <div>
     <label for="description">Description:</label>
-    <input type="text" name="description" id="description" value=<%= @tip.description%>>
+    <input type="text" name="description" id="description" value="<%= @tip.description%>">
   </div>
     <input type="submit" value="Update">
     <input id="hidden" type="hidden" name="_method" value="patch">
