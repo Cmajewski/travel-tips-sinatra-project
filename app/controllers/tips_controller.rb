@@ -26,22 +26,29 @@ class TipsController < ApplicationController
         else
         redirect to "tips/failure"
       end      
-
     end
 
      # GET failure message to redirect
   get "/tips/failure" do
+    if Helpers.logged_in?(session)
+      erb :"/tips/new"
+      else 
     erb :"tips/failure"
+    end
   end
 
   # GET: /tips/5
   get "/tips/:id" do
-    erb :"/tips/show.html"
+  if Helpers.logged_in?(session)
+    erb :"/tips/new"
+  else 
+    erb :"/tips/show"
+  end
   end
 
   # GET: /tips/5/edit
   get "/tips/:id/edit" do
-    erb :"/tips/edit.html"
+    erb :"/tips/edit"
   end
 
   # PATCH: /tips/5

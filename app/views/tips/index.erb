@@ -1,5 +1,8 @@
 <h1>Your Favorite Places to Date</h1>
 
+
+<h3><a href="./tips/new.erb">Create New Recommendation</a></h3>
+
 <%Tip.all.each do |tip| %>
 <br>
 <h2>City: <%=Helpers.find_destination(tip.destination_id).capitalize%></h2>

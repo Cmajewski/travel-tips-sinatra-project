@@ -36,20 +36,20 @@ class UsersController < ApplicationController
   get "/users" do
      if Helpers.logged_in?(session)
       @users=Helpers.current_user(session)
-      erb :"/users/show"
+      erb :"/tips/index"
      else
       redirect to "/users/new"
      end
   end
 
-  # GET: /users/5
-  get "/users/:id" do
-    erb :"/users/show.html"
-  end
-
+  
   # GET: /users/5/edit
   get "/users/:id/edit" do
-    erb :"/users/edit.html"
+    if Helpers.logged_in?(session)
+      redirect to "/users/new"
+    else
+    erb :"/users/edit"
+    end
   end
 
   # PATCH: /users/5
@@ -62,13 +62,6 @@ class UsersController < ApplicationController
     redirect "/users"
   end
 
-  get "/logout" do 
-    if Helpers.logged_in?(session)
-    session.clear
-    redirect to "/"
-    else 
-      redirect to "/"
-    end
-  end
+ 
 
 end
