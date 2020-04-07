@@ -1,15 +1,19 @@
-
-
 <form action="/tips/<%=@tip.id%>" method="post">
+<div>
+    <label for="name">Your Find:</label>
+    <input type="text" name="name" id="name" value=<%= @tip.name %>>
+</div>
+ <div>
+    <label for="type_of_place">What is it?:</label>
+    <input type="text" name="type_of_place" id="type_of_place" value=<%= @tip.type_of_place%>>
+  </div>
+
+   <div>
+    <label for="description">Description:</label>
+    <input type="text" name="description" id="description" value=<%= @tip.description%>>
+  </div>
+    <input type="submit" value="Update">
     <input id="hidden" type="hidden" name="_method" value="patch">
-    <h2>Your Find: <input type="text" value="<%=@tip.name%>" name="name"></h2>
-    <ul>
-    <li><b><label for="type_of_place">What is it?:</label></b>
-    <input type="text" value="<%=@tip.type_of_place%>" name="type_of_place"></li>
-    <br>
-    <li><b><label for="description">Description:</label></b>
-    <input type="text" value="<%=@tip.description%>" name="description">
-    <ul></li>
-    <br>
-    <input type="submit" id="submit" value="Update">
 </form>
+
+    

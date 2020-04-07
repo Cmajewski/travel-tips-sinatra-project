@@ -57,16 +57,17 @@ class TipsController < ApplicationController
       erb :"/users/new"
     else 
       @tip=Tip.find(params[:id])
-      binding.pry
+      
     erb :"/tips/edit"
     end
   end
 
   # PATCH: /tips/5
   patch "/tips/:id" do
-    @tip = Tip.find_by(params[:id])
-    @tip.update(name: params[:name], type_of_place: params[:type_of_place],description: params[:description])
-    redirect "/tips/#{@tip.id}"
+    @edit_tip = Tip.find_by(params[:id])
+    binding.pry
+    @edit_tip.update(name: params[:name], type_of_place: params[:type_of_place],description: params[:description])
+    redirect "/tips/#{@edit_tip.id}"
   end
 
   # DELETE: /tips/5/delete
