@@ -1,7 +1,9 @@
 <h1>Be In The Know</h1>
 <p>Where do you want to go?</p>
 
+
 <%@destination.each do |destination| %>
-<h2><%=destination.city_name.capitalize%></h2>
+<h2><a href="/destinations/<%=destination.id%>">
+<%=destination.city_name.capitalize%></a></h2>
 
 <%end%>

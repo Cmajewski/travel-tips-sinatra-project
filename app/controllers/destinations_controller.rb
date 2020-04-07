@@ -11,11 +11,12 @@ class DestinationsController < ApplicationController
     end
   end
 
-  get "/destination/:id" do
+  get "/destinations/:id" do
     if !Helpers.logged_in?(session)
       erb :"/users/new"
     else 
       @destination=Destination.find(params[:id])
+      @tips=Tip.select{|tips| tips.destination_id==@destination.id}
       erb :"/destinations/show"
     end
     end

@@ -6,6 +6,8 @@ class TipsController < ApplicationController
       erb :"/users/new"
     else 
     @user=Helpers.current_user(session)
+    @tips=Tip.select{|tips| tips.user_id==@user.id}
+    binding.pry
     erb :"/tips/index"
     end
   end
@@ -64,7 +66,6 @@ class TipsController < ApplicationController
   # PATCH: /tips/5
   patch "/tips/:id" do
     @edit_tip = Tip.find(params[:id])
-    binding.pry
     @edit_tip.update(name: params[:name], type_of_place: params[:type_of_place],description: params[:description])
     redirect "/tips/#{@edit_tip.id}"
   end

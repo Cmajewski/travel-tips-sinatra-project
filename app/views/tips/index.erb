@@ -1,12 +1,15 @@
-<h1>Your Favorite Places</h1>
+<h1>Your Recommendations</h1>
 
 
  <h3><a href="/tips/new">Create New Recommendation</a></h3>
 <h3><a href="/destinations">Explore</a></h3>
-<%Tip.all.each do |tip| %>
+<%@tips.each do |tip| %>
 <br>
+
 <h2>City: <%=Helpers.find_destination(tip.destination_id).capitalize%></h2>
-<h3>Your find: <%= tip.name%></h3>
+
+<a href="/tips/<%=tip.id%>"><h3>Your find: <%= tip.name%></h3></a>
 <h3>What is it?: <%= tip.type_of_place%></h3>
 <h3>Description: <%= tip.description%></h3>
+
 <%end%>

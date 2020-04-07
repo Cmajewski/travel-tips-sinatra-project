@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   get "/users" do
      if Helpers.logged_in?(session)
       @users=Helpers.current_user(session)
-      erb :"/tips/index"
+      redirect to "/tips"
      else
       redirect to "/users/new"
      end
