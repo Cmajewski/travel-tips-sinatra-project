@@ -7,7 +7,6 @@ class TipsController < ApplicationController
     else 
     @user=Helpers.current_user(session)
     @tips=Tip.select{|tips| tips.user_id==@user.id}
-    binding.pry
     erb :"/tips/index"
     end
   end

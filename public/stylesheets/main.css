@@ -71,9 +71,9 @@
 
   .sidebar {
     background: #fbede6;
-    border: 1px solid #ccc;
+    border: 20px solid  #fbede6;
     float: right;
-    padding: %; /* 5px / 240px */
+    padding: 0%; /* 5px / 240px */
     width: 30%; /* 240px / 800px */
   }
 
@@ -87,7 +87,7 @@
   }
 
   footer.branding {
-    border-top: 2px solid #ccc;
+    /* border-top: 2px solid #ccc; */
     margin-top: 20px;
     padding-top: 20px;
   }
@@ -104,13 +104,15 @@
   .content, .sidebar {
     float: none;
     width: 100%;
+    padding: 20px;
   }
 
   .sidebar {
     background: transperent;
     border: none;
-    border-top: 2px solid #ccc;
-    padding: 20%;
+    border-top: 7px solid #ccc;
+    padding: 30%;
+ 
   }
 
   h1 {
